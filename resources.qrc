@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Mac-Screen-Shot.png</file>
+    </qresource>
+</RCC>

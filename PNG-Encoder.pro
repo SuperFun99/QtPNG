@@ -13,8 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    KEncodePNG.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    KEncodePNG.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc

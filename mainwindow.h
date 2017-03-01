@@ -12,8 +12,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *pParent = 0);
     ~MainWindow();
+
+private slots:
+    void on_encodeButton_clicked();
 
 private:
     Ui::MainWindow *ui;
