@@ -6,6 +6,8 @@
 #include <QColor>
 
 
+typedef QMap<QRgb, int> KColorMap;
+
 // - - - - - - - - - - - - - - -
 
 
@@ -37,11 +39,13 @@ protected:
     int m_nHeight;
     QByteArray m_OrigPixelData;       // 32-bits: 0xAARRGGBB stored in little-endian order. Top to bottom, left to right.
     int m_nColors;                    // Num colors or 257 which means more than 256.
-    int m_nTransparentColors;         // Number of colors with alpha != 255.  Valid only if numColors <= 256.
-    bool m_bGrayscale;                // True if all colors are gray (R = G = B).
-    bool m_bCanUseIndexTransparency;  // True if there is only one color with transparency and it's fully transparent.
-    QMap<QRgb, int> m_ColorMap;       // Color ⟶ # occurences.  Valid only if numColors <= 256.
-    QMap<QRgb, int> m_TransMap;       // Color with transparency ⟶ # occurences.  Valid only if numColors <= 256.
+    bool m_bHasTransparent;           // True if there is a pixel whose RGBA values are all zero.
+    bool m_bAllGray;                  // True if all colors are gray (R = G = B).
+    bool m_bHasTranslucentGray;       // True if there is a gray, non-transparent pixel with alpha < 255.
+    bool m_bHasTranslucentColor;      // True if there is a non-gray, non-transparent pixel with alpha < 255.
+    int m_nGrayBitDepth;              // The number of bits per necessary to represent each gray value: 0, 1, 2, 4, 8
+    KColorMap m_ColorMap;             // Color ⟶ # occurences.  Valid only if numColors <= 256.
+    KColorMap m_TransMap;             // Color with transparency ⟶ # occurences.  Valid only if numColors <= 256.
 
 
 protected:
